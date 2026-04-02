@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Augur — Marketing Strategy 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --base: #060412;
+  --surface: rgba(14, 11, 30, 0.7);
+  --elevated: #1E1B2E;
+  --border: rgba(139, 92, 246, 0.12);
+  --accent1: #8B5CF6;
+  --accent1-light: #A78BFA;
+  --accent2: #3B82F6;
+  --accent3: #F59E0B;
+  --accent4: #EC4899;
+  --emerald: #10B981;
+  --red: #EF4444;
+  --text: #F8FAFC;
+  --text2: #94A3B8;
+  --text3: #475569;
+  --glow1: 0 0 20px rgba(139,92,246,0.5), 0 0 50px rgba(139,92,246,0.2);
+  --glow2: 0 0 20px rgba(59,130,246,0.5), 0 0 50px rgba(59,130,246,0.2);
+  --gradient1: linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%);
+  --gradient-hero: linear-gradient(135deg, #C4B5FD 0%, #A78BFA 20%, #8B5CF6 45%, #3B82F6 70%, #A78BFA 100%);
+  --gradient-btn: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 30%, #3B82F6 100%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--base);
+  color: var(--text);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ============ SLIDE 1 SEQUENTIAL REVEAL ============ */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.reveal-item:nth-child(1) { animation-delay: 0.3s; }  /* ◈ icon */
+.reveal-item:nth-child(2) { animation-delay: 1.2s; }  /* "O Futuro," */
+.reveal-item:nth-child(3) { animation-delay: 1.8s; }  /* "Revelado." */
+.reveal-item:nth-child(4) { animation-delay: 2.4s; }  /* subtitle */
+.reveal-item:nth-child(5) { animation-delay: 2.8s; }  /* date */
+.reveal-item:nth-child(6) { animation-delay: 3.2s; }  /* badges */
+
+@keyframes reveal-up {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ◈ icon special entrance — scale + glow */
+.reveal-icon {
+  opacity: 0;
+  transform: scale(0.3) rotate(-10deg);
+  animation: icon-entrance 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+@keyframes icon-entrance {
+  0% { opacity: 0; transform: scale(0.3) rotate(-10deg); filter: blur(8px); }
+  60% { opacity: 1; transform: scale(1.15) rotate(2deg); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); filter: blur(0); }
+}
+
+/* Nav bar reveals after content */
+.nav-bar {
+  opacity: 0;
+  animation: nav-reveal 0.5s ease-out 3.5s forwards;
+}
+@keyframes nav-reveal {
+  to { opacity: 1; }
+}
+
+/* Ambient background */
+body::before {
+  content: '';
+  position: fixed;
+  top: -20%;
+  left: 30%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(139,92,246,0.15) 0%, rgba(88,28,235,0.08) 30%, transparent 65%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-bg 8s ease-in-out infinite;
+}
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -10%;
+  right: 0;
+  width: 40%;
+  height: 50%;
+  background: radial-gradient(ellipse, rgba(59,130,246,0.1) 0%, transparent 65%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-bg 12s ease-in-out infinite 3s;
+}
+
+@keyframes pulse-bg {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Slides container */
+.deck {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 6rem;
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+  overflow-y: auto;
+}
+.slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 2;
+}
+.slide.prev {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+/* Typography */
+h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+h2 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.5rem; }
+h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; }
+p { font-size: 1rem; color: var(--text2); line-height: 1.7; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+.gradient-text {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 300%;
+  animation: gradient-shift 5s ease infinite;
+}
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent1);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+}
+.card:hover {
+  border-color: rgba(139,92,246,0.3);
+  box-shadow: 0 8px 30px rgba(139,92,246,0.15);
+}
+.card-grid {
+  display: grid;
+  gap: 1rem;
+}
+.card-grid-2 { grid-template-columns: 1fr 1fr; }
+.card-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.card-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+th {
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 2px solid rgba(139,92,246,0.2);
+  color: var(--accent1-light);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+td {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid rgba(139,92,246,0.06);
+  color: var(--text2);
+}
+tr:hover td { color: var(--text); background: rgba(139,92,246,0.04); }
+td strong, td b { color: var(--text); }
+
+/* Stat boxes */
+.stat {
+  text-align: center;
+  padding: 1.25rem;
+}
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text3);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 99px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.badge-violet { background: rgba(139,92,246,0.15); color: var(--accent1-light); border: 1px solid rgba(139,92,246,0.3); }
+.badge-blue { background: rgba(59,130,246,0.15); color: var(--accent2); border: 1px solid rgba(59,130,246,0.3); }
+.badge-gold { background: rgba(245,158,11,0.15); color: var(--accent3); border: 1px solid rgba(245,158,11,0.3); }
+.badge-green { background: rgba(16,185,129,0.15); color: var(--emerald); border: 1px solid rgba(16,185,129,0.3); }
+.badge-red { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+.badge-pink { background: rgba(236,72,153,0.15); color: var(--accent4); border: 1px solid rgba(236,72,153,0.3); }
+
+/* Highlight box */
+.highlight {
+  background: linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(59,130,246,0.05) 100%);
+  border: 1px solid rgba(139,92,246,0.2);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0;
+}
+.highlight-gold {
+  background: linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0.03) 100%);
+  border: 1px solid rgba(245,158,11,0.2);
+}
+.highlight-red {
+  background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(239,68,68,0.03) 100%);
+  border: 1px solid rgba(239,68,68,0.2);
+}
+
+/* Progress bar / nav */
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: rgba(6,4,18,0.9);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+}
+.nav-bar .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+}
+.nav-bar .logo span:first-child {
+  background: var(--gradient1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.1rem;
+}
+.nav-bar .logo span:last-child {
+  background: var(--gradient1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.progress-track {
+  flex: 1;
+  max-width: 300px;
+  height: 3px;
+  background: var(--elevated);
+  border-radius: 3px;
+  margin: 0 1.5rem;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--gradient1);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 8px rgba(139,92,246,0.5);
+}
+.slide-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text3);
+  min-width: 60px;
+  text-align: right;
+}
+.nav-arrows {
+  display: flex;
+  gap: 0.5rem;
+}
+.nav-arrows button {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+.nav-arrows button:hover {
+  border-color: var(--accent1);
+  color: var(--text);
+  box-shadow: var(--glow1);
+}
+
+/* Utilities */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.gap-3 { gap: 1.5rem; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-sm { font-size: 0.85rem; }
+.text-xs { font-size: 0.75rem; }
+.w-full { width: 100%; }
+.color-v { color: var(--accent1); }
+.color-b { color: var(--accent2); }
+.color-g { color: var(--accent3); }
+.color-e { color: var(--emerald); }
+.color-r { color: var(--red); }
+.color-p { color: var(--accent4); }
+.fw-800 { font-weight: 800; }
+.fw-700 { font-weight: 700; }
+.fw-600 { font-weight: 600; }
+.op-60 { opacity: 0.6; }
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,0.3), transparent);
+}
+.divider .diamond {
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  border: 1.5px solid var(--accent1);
+  opacity: 0.5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.3); border-radius: 4px; }
+
+/* Two column layout */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* List styles */
+ul.clean { list-style: none; }
+ul.clean li {
+  padding: 0.4rem 0;
+  padding-left: 1.2rem;
+  position: relative;
+  color: var(--text2);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+ul.clean li::before {
+  content: '◈';
+  position: absolute;
+  left: 0;
+  color: var(--accent1);
+  font-size: 0.65rem;
+  top: 0.55rem;
+}
+
+@media (max-width: 900px) {
+  .slide { padding: 2rem 1.5rem; }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.6rem; }
+  .card-grid-2, .card-grid-3, .card-grid-4 { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .stat-value { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- ============ SLIDE 1: COVER ============ -->
+<div class="slide active" style="justify-content: center; align-items: center; text-align: center;">
+  <div class="reveal-icon" style="margin-bottom: 2rem;">
+    <span class="gradient-text" style="font-size: 3.5rem; line-height: 1; display: inline-block;">◈</span>
+  </div>
+  <div class="reveal-item" style="margin-bottom: 0;">
+    <span class="gradient-text" style="font-size: 3.5rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;">O Futuro,</span>
+  </div>
+  <div class="reveal-item">
+    <span style="font-size: 3.5rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--text);">Revelado.</span>
+  </div>
+  <div class="reveal-item" style="margin-top: 1.5rem;">
+    <p style="font-size: 1.15rem; max-width: 600px; margin: 0 auto;">Estratégia de Marketing, Posicionamento e Growth</p>
+  </div>
+  <div class="reveal-item">
+    <span class="mono text-xs op-60">Abril 2026</span>
+  </div>
+  <div class="reveal-item flex gap-2 mt-3" style="justify-content: center;">
+    <span class="badge badge-violet">Prediction Markets</span>
+    <span class="badge badge-blue">LATAM First</span>
+    <span class="badge badge-gold">$44B Market</span>
+  </div>
+</div>
+
+<!-- ============ SLIDE 2: MARKET OVERVIEW (light) ============ -->
+<div class="slide">
+  <span class="label">O Mercado</span>
+  <h2>Prediction Markets explodiram.<br><span class="gradient-text">LATAM não tem ninguém.</span></h2>
+  <div class="card-grid card-grid-3 mt-3">
+    <div class="card stat">
+      <div class="stat-value color-g">$44B+</div>
+      <div class="stat-label">Volume Global 2025</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-value color-v">14x</div>
+      <div class="stat-label">Crescimento YoY</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-value color-b">ZERO</div>
+      <div class="stat-label">Ferramentas em PT/ES</div>
+    </div>
+  </div>
+  <div class="highlight mt-3">
+    <p style="color: var(--text); font-size: 0.9rem;">
+      <strong>Duopólio global:</strong> Kalshi ($24.2B, valuation $11B) + Polymarket (~$10-12B real) controlam ~97.5% do mercado.
+      <strong style="color: var(--accent3);">Nenhum player atende o varejo LATAM.</strong>
+    </p>
+  </div>
+</div>
+
+<!-- ============ SLIDE 3: §2 COMPETITIVE ============ -->
+<div class="slide">
+  <span class="label">§2 — Análise Competitiva</span>
+  <h2>Landscape Global</h2>
+  <table class="mt-2">
+    <tr>
+      <th>Plataforma</th><th>Volume 2025</th><th>Status</th><th>LATAM?</th>
+    </tr>
+    <tr>
+      <td><strong>Polymarket</strong></td>
+      <td>~$10-12B</td>
+      <td>Dominante crypto-native, Nate Silver advisor</td>
+      <td><span class="badge badge-red">Não</span></td>
+    </tr>
+    <tr>
+      <td><strong>Kalshi</strong></td>
+      <td>$24.2B</td>
+      <td>CFTC regulated, $11B valuation (Sequoia, a16z, ARK)</td>
+      <td><span class="badge badge-gold">Via XP apenas</span></td>
+    </tr>
+    <tr>
+      <td><strong>Manifold</strong></td>
+      <td>Mínimo</td>
+      <td>886 DAU, play money sunset</td>
+      <td><span class="badge badge-red">Não</span></td>
+    </tr>
+    <tr>
+      <td><strong>Previas / Palpitada</strong></td>
+      <td>—</td>
+      <td>Grey market BR, sem sinais/educação</td>
+      <td><span class="badge badge-green">BR (grey)</span></td>
+    </tr>
+  </table>
+  <div class="highlight mt-3">
+    <p style="color: var(--text); font-size: 0.9rem;">
+      <strong>Kalshi já entrou no Brasil</strong> via XP/Clear — mas apenas investidores profissionais (R$10M+), apenas contratos financeiros.
+      <strong style="color: var(--accent1);">Gap massivo no varejo.</strong>
+    </p>
+  </div>
+</div>
+
+<!-- ============ SLIDE 4: §2 BRASIL REGULATORY ============ -->
+<div class="slide">
+  <span class="label">§2 — Brasil: Regulatório</span>
+  <h2>Dois trilhos, uma oportunidade</h2>
+  <div class="card-grid card-grid-2 mt-3">
+    <div class="card" style="border-color: rgba(16,185,129,0.3);">
+      <div class="flex items-center gap-1 mb-2">
+        <span style="font-size: 1.2rem;">✅</span>
+        <h3 style="margin: 0; color: var(--emerald);">Trilho CVM / Financeiro</h3>
+      </div>
+      <ul class="clean">
+        <li>CVM aprovou B3 para prediction markets como valores mobiliários</li>
+        <li>Kalshi opera via XP/Clear (profissionais)</li>
+        <li>Posicionamento "Info Finance" (Buterin)</li>
+        <li><strong style="color: var(--emerald);">Recomendado para o Augur</strong></li>
+      </ul>
+    </div>
+    <div class="card" style="border-color: rgba(239,68,68,0.3);">
+      <div class="flex items-center gap-1 mb-2">
+        <span style="font-size: 1.2rem;">⚠️</span>
+        <h3 style="margin: 0; color: var(--red);">Trilho SPA / Betting</h3>
+      </div>
+      <ul class="clean">
+        <li>SPA alertou: nenhum operador autorizado</li>
+        <li>Operadores de sports betting fazendo lobby contra</li>
+        <li>Grey market (Previas, Palpitada) em risco</li>
+        <li><strong style="color: var(--red);">Evitar este enquadramento</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight-gold mt-2">
+    <p style="color: var(--text); font-size: 0.85rem;">
+      <strong>Crypto proibido para B2C betting</strong> (Ordinance 615). PIX obrigatório. Plataforma PIX-native tem vantagem estrutural sobre <em>todos</em> os players globais.
+    </p>
+  </div>
+</div>
+
+<!-- ============ SLIDE 5: §4 POSITIONING ============ -->
+<div class="slide">
+  <span class="label">§4 — Posicionamento</span>
+  <h2>Modelo <span class="gradient-text">MetaTrader</span></h2>
+  <p class="mt-1">O Augur é o <strong style="color: var(--text);">terminal de inteligência e execução</strong>. A Polymarket é a corretora.</p>
+
+  <div class="two-col mt-3">
+    <div>
+      <h3 class="color-v">Augur faz:</h3>
+      <ul class="clean">
+        <li>Onboarding zero-friction (email + PIX)</li>
+        <li>Cria carteira Polygon automaticamente</li>
+        <li>Sinais inteligentes com IA</li>
+        <li>Academy gamificada (20+ missões)</li>
+        <li>Design Zaun/Piltover (cinematográfico)</li>
+        <li>Tudo em português</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="color-b">Polymarket faz:</h3>
+      <ul class="clean">
+        <li>Liquidez dos mercados</li>
+        <li>Execução das operações</li>
+        <li>Custódia (via Polygon)</li>
+        <li>Market making</li>
+      </ul>
+      <div class="highlight mt-2">
+        <p class="text-sm" style="color: var(--text);">O usuário <strong>nunca sai do Augur</strong>. Não precisa saber que "por trás" é Polymarket.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 6: §4 COMPARISON ============ -->
+<div class="slide">
+  <span class="label">§4 — Diferencial</span>
+  <h2>Por que não usar <span style="color: var(--text3);">Polymarket direto?</span></h2>
+  <table class="mt-3">
+    <tr><th>Aspecto</th><th>Polymarket direto</th><th style="color: var(--accent1);">Augur</th></tr>
+    <tr><td>Depositar</td><td>Comprar USDC, bridge Polygon</td><td><strong class="color-e">PIX (1 QR code)</strong></td></tr>
+    <tr><td>Idioma</td><td>Inglês</td><td><strong class="color-e">Português, Espanhol e Inglês</strong></td></tr>
+    <tr><td>Sinais</td><td>Nenhum</td><td><strong class="color-e">Whale, convergência, volume, notícia</strong></td></tr>
+    <tr><td>Educação</td><td>Nenhuma</td><td><strong class="color-e">Academy gamificada 20+ missões</strong></td></tr>
+    <tr><td>Design</td><td>Funcional, genérico</td><td><strong class="color-e">Zaun / Piltover (cinematográfico)</strong></td></tr>
+    <tr><td>API para bots</td><td>Sim (avançado)</td><td><strong class="color-e">Sim + SDKs + docs em PT</strong></td></tr>
+  </table>
+</div>
+
+<!-- ============ SLIDE 7: §5 PERSONAS ============ -->
+<div class="slide">
+  <span class="label">§5 — Personas de Aquisição</span>
+  <h2>Quem são os primeiros usuários</h2>
+  <div class="card-grid card-grid-4 mt-2">
+    <div class="card">
+      <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔮</div>
+      <h3>Crypto Trader</h3>
+      <span class="badge badge-violet" style="margin-bottom: 0.5rem;">40% do target</span>
+      <p class="text-sm">22-35, já ouviu falar de Polymarket. Quer sinais, não raw data.</p>
+      <p class="text-xs mt-1 color-v fw-600">Dolphin → Whale</p>
+    </div>
+    <div class="card">
+      <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎯</div>
+      <h3>Apostador Upgrade</h3>
+      <span class="badge badge-blue" style="margin-bottom: 0.5rem;">30% do target</span>
+      <p class="text-sm">25-40, aposta em Bet365. Quer ir além de esportes.</p>
+      <p class="text-xs mt-1 color-b fw-600">Dolphin</p>
+    </div>
+    <div class="card">
+      <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📊</div>
+      <h3>Curioso Político</h3>
+      <span class="badge badge-gold" style="margin-bottom: 0.5rem;">20% do target</span>
+      <p class="text-sm">28-50, acompanha política/economia. Quer probabilidades reais.</p>
+      <p class="text-xs mt-1 color-g fw-600">Minnow → Dolphin</p>
+    </div>
+    <div class="card">
+      <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💻</div>
+      <h3>Estudante / Dev</h3>
+      <span class="badge badge-pink" style="margin-bottom: 0.5rem;">10% do target</span>
+      <p class="text-sm">18-25, quer praticar. Futuro vibe coder.</p>
+      <p class="text-xs mt-1 color-p fw-600">Minnow (agora) → Whale</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 8: §6 MONETIZATION ============ -->
+<div class="slide">
+  <span class="label">§6 — Monetização</span>
+  <h2>3 Revenue Streams. <span class="gradient-text">Zero Ads.</span></h2>
+  <div class="card-grid card-grid-3 mt-3">
+    <div class="card" style="border-top: 2px solid var(--accent1);">
+      <h3 class="color-v">1. Subscription</h3>
+      <p class="text-sm">Augur Pro — sinais premium, alertas real-time, analytics avançado</p>
+      <div class="mt-2">
+        <div class="stat-value color-v" style="font-size: 1.8rem;">R$39,90</div>
+        <div class="stat-label">/mês</div>
+      </div>
+      <p class="text-xs mt-2 op-60">Quem paga: usuário (voluntário)</p>
+    </div>
+    <div class="card" style="border-top: 2px solid var(--accent2);">
+      <h3 class="color-b">2. Rebate Taker Fee</h3>
+      <p class="text-sm">20% de rebate da Polymarket em toda operação via Augur</p>
+      <div class="mt-2">
+        <div class="stat-value color-b" style="font-size: 1.8rem;">0.1-0.25%</div>
+        <div class="stat-label">por operação</div>
+      </div>
+      <p class="text-xs mt-2 op-60">Quem paga: Polymarket (automático)</p>
+    </div>
+    <div class="card" style="border-top: 2px solid var(--accent3);">
+      <h3 class="color-g">3. Spread PIX→USDC</h3>
+      <p class="text-sm">Spread embutido na conversão de depósito</p>
+      <div class="mt-2">
+        <div class="stat-value color-g" style="font-size: 1.8rem;">1-2%</div>
+        <div class="stat-label">por depósito</div>
+      </div>
+      <p class="text-xs mt-2 op-60">Embutido no câmbio (invisível)</p>
+    </div>
+  </div>
+  <div class="highlight mt-2">
+    <p style="color: var(--text); font-size: 0.85rem;">
+      <strong>Streams 2 e 3 são transaction-based</strong> — crescem com volume, não dependem de conversion para premium. Até free users geram revenue ao operar.
+    </p>
+  </div>
+</div>
+
+<!-- ============ SLIDE 9: §6 PRICING ============ -->
+<div class="slide">
+  <span class="label">§6 — Pricing</span>
+  <h2>Augur Pro</h2>
+  <div class="card-grid card-grid-3 mt-3">
+    <div class="card text-center">
+      <div class="stat-label mb-2">MENSAL</div>
+      <div class="stat-value" style="font-size: 2rem;">R$39,90</div>
+      <div class="text-xs op-60 mt-1">/mês</div>
+    </div>
+    <div class="card text-center" style="border-color: var(--accent1); box-shadow: var(--glow1);">
+      <span class="badge badge-violet" style="margin-bottom: 0.5rem;">POPULAR</span>
+      <div class="stat-label mb-2">TRIMESTRAL</div>
+      <div class="stat-value" style="font-size: 2rem;">R$89,90</div>
+      <div class="text-xs op-60 mt-1">R$29,97/mês — <span class="color-e">25% off</span></div>
+    </div>
+    <div class="card text-center">
+      <div class="stat-label mb-2">ANUAL</div>
+      <div class="stat-value" style="font-size: 2rem;">R$239,90</div>
+      <div class="text-xs op-60 mt-1">R$19,99/mês — <span class="color-e">50% off</span></div>
+    </div>
+  </div>
+  <p class="text-sm mt-3 op-60 text-center">Abaixo de TradingView Pro (~R$75/mês). Se 1 sinal gerar R$100+ de lucro, o mês se pagou.</p>
+</div>
+
+<!-- ============ SLIDE 10: REVENUE SIMULATOR ============ -->
+<div class="slide">
+  <span class="label">§7 — Simulador</span>
+  <h2>Simule sua receita <span class="gradient-text">no mês</span></h2>
+  <div class="two-col mt-3" style="align-items: start;">
+    <div>
+      <div class="card" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div>
+          <label style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text2); margin-bottom: 0.5rem;">
+            <span>MAU (usuários ativos/mês)</span>
+            <span class="mono fw-700 color-v" id="sim-mau-val">5.000</span>
+          </label>
+          <input type="range" id="sim-mau" min="100" max="50000" value="5000" step="100"
+            style="width: 100%; accent-color: var(--accent1); cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text3);">
+            <span>100</span><span>50.000</span>
+          </div>
+        </div>
+        <div>
+          <label style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text2); margin-bottom: 0.5rem;">
+            <span>% do MAU — Vibe Coders (API)</span>
+            <span class="mono fw-700 color-b" id="sim-api-val">1%</span>
+          </label>
+          <input type="range" id="sim-api" min="0" max="10" value="1" step="0.5"
+            style="width: 100%; accent-color: var(--accent2); cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text3);">
+            <span>0%</span><span>10%</span>
+          </div>
+        </div>
+        <div>
+          <label style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text2); margin-bottom: 0.5rem;">
+            <span>Depósito médio/trader</span>
+            <span class="mono fw-700 color-g" id="sim-dep-val">R$300</span>
+          </label>
+          <input type="range" id="sim-dep" min="100" max="2000" value="300" step="50"
+            style="width: 100%; accent-color: var(--accent3); cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text3);">
+            <span>R$100</span><span>R$2.000</span>
+          </div>
+        </div>
+        <div>
+          <label style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text2); margin-bottom: 0.5rem;">
+            <span>Assinantes (Augur Pro)</span>
+            <span class="mono fw-700 color-p" id="sim-subs-val">50</span>
+          </label>
+          <input type="range" id="sim-subs" min="0" max="5000" value="50" step="10"
+            style="width: 100%; accent-color: var(--accent4); cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text3);">
+            <span>0</span><span>5.000</span>
+          </div>
+        </div>
+      </div>
+      <div class="highlight mt-2" style="padding: 0.8rem 1rem;">
+        <p class="text-xs" style="color: var(--text2); margin: 0;">
+          DAU = 30% do MAU &nbsp;|&nbsp; Traders varejo = 30% do DAU<br>
+          Varejo: <strong class="color-v">5x</strong> depósito em volume &nbsp;|&nbsp; Vibe coders: <strong class="color-b">100x</strong> depósito em volume<br>
+          Rebate: <strong>0.15%</strong> do volume &nbsp;|&nbsp; Spread PIX→USDC: <strong>1.5%</strong> do depósito &nbsp;|&nbsp; Ticket sub: <strong>R$80</strong>
+        </p>
+      </div>
+    </div>
+    <div>
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <div class="card stat" style="padding: 1rem;">
+          <div class="stat-value" style="font-size: 1.3rem; color: var(--text);" id="sim-dau">1.500</div>
+          <div class="stat-label">DAU (30% MAU)</div>
+        </div>
+        <div class="card stat" style="padding: 1rem;">
+          <div class="stat-value color-v" style="font-size: 1.3rem;" id="sim-manual-count">450</div>
+          <div class="stat-label">Traders Varejo (30% DAU)</div>
+        </div>
+        <div class="card stat" style="padding: 1rem;">
+          <div class="stat-value color-b" style="font-size: 1.3rem;" id="sim-api-count">50</div>
+          <div class="stat-label">Vibe Coders (% MAU)</div>
+        </div>
+        <div class="card stat" style="padding: 1rem;">
+          <div class="stat-value" style="font-size: 1.3rem; color: var(--text);" id="sim-vol-total">$285K</div>
+          <div class="stat-label">Volume Total</div>
+        </div>
+      </div>
+      <div class="card-grid mt-2" style="grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <div class="card stat" style="padding: 0.8rem;">
+          <div class="stat-value" style="font-size: 1.1rem; color: var(--text2);" id="sim-vol-manual">$135K</div>
+          <div class="stat-label">Vol. Varejo (5x)</div>
+        </div>
+        <div class="card stat" style="padding: 0.8rem;">
+          <div class="stat-value" style="font-size: 1.1rem; color: var(--text2);" id="sim-vol-api">$300K</div>
+          <div class="stat-label">Vol. API (100x)</div>
+        </div>
+      </div>
+      <div class="card mt-2" style="border-color: rgba(16,185,129,0.3); box-shadow: 0 0 20px rgba(16,185,129,0.15); text-align: center; padding: 1.25rem;">
+        <div class="stat-label" style="margin-bottom: 0.5rem;">Receita Total no Mês</div>
+        <div class="stat-value color-e" style="font-size: 2.5rem;" id="sim-revenue">R$12.375</div>
+        <div style="display: flex; justify-content: center; gap: 1.2rem; margin-top: 0.75rem;">
+          <div>
+            <div class="text-xs op-60">Rebate</div>
+            <div class="mono text-sm fw-600 color-v" id="sim-rebate">R$2.138</div>
+          </div>
+          <div style="width: 1px; background: var(--border);"></div>
+          <div>
+            <div class="text-xs op-60">Spread PIX</div>
+            <div class="mono text-sm fw-600 color-g" id="sim-spread">R$2.250</div>
+          </div>
+          <div style="width: 1px; background: var(--border);"></div>
+          <div>
+            <div class="text-xs op-60">Assinaturas</div>
+            <div class="mono text-sm fw-600 color-p" id="sim-sub-rev">R$4.000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 11: §7 PROJECTIONS ============ -->
+<div class="slide" style="padding-top: 2rem; padding-bottom: 4rem;">
+  <span class="label">§7 — Projeção Financeira</span>
+  <h2>12 Meses — Revenue e P&L</h2>
+  <table class="mt-2" style="font-size: 0.75rem;">
+    <tr>
+      <th>Mês</th><th>Traders</th><th>API</th><th>Vol (USD)</th><th>Rev Sub</th><th>Rev Txn</th><th>Rev Total</th><th>Custo</th><th>Resultado</th>
+    </tr>
+    <tr><td>1</td><td>50</td><td>6</td><td>$51K</td><td>R$330</td><td>R$635</td><td><b>R$965</b></td><td>R$6.500</td><td class="color-r">-R$5.535</td></tr>
+    <tr><td>2</td><td>70</td><td>8</td><td>$69K</td><td>R$825</td><td>R$879</td><td><b>R$1.704</b></td><td>R$6.500</td><td class="color-r">-R$4.796</td></tr>
+    <tr><td>3</td><td>95</td><td>11</td><td>$94K</td><td>R$1.485</td><td>R$1.215</td><td><b>R$2.700</b></td><td>R$6.500</td><td class="color-r">-R$3.800</td></tr>
+    <tr><td>4</td><td>126</td><td>14</td><td>$162K</td><td>R$2.145</td><td>R$1.926</td><td><b>R$4.071</b></td><td>R$4.500</td><td class="color-r">-R$429</td></tr>
+    <tr style="background: rgba(16,185,129,0.06);"><td><b>5</b></td><td>180</td><td>20</td><td>$232K</td><td>R$3.300</td><td>R$2.790</td><td><b>R$6.090</b></td><td>R$6.000</td><td class="color-e"><b>+R$90</b></td></tr>
+    <tr><td>6</td><td>243</td><td>27</td><td>$313K</td><td>R$4.950</td><td>R$3.840</td><td><b>R$8.790</b></td><td>R$8.500</td><td class="color-e">+R$290</td></tr>
+    <tr><td>7</td><td>342</td><td>38</td><td>$551K</td><td>R$7.260</td><td>R$6.361</td><td><b>R$13.621</b></td><td>R$11.800</td><td class="color-e">+R$1.821</td></tr>
+    <tr><td>8</td><td>423</td><td>47</td><td>$682K</td><td>R$9.900</td><td>R$7.995</td><td><b>R$17.895</b></td><td>R$14.000</td><td class="color-e">+R$3.895</td></tr>
+    <tr><td>9</td><td>522</td><td>58</td><td>$841K</td><td>R$13.200</td><td>R$10.022</td><td><b>R$23.222</b></td><td>R$17.000</td><td class="color-e">+R$6.222</td></tr>
+    <tr><td>10</td><td>594</td><td>66</td><td>$1.24M</td><td>R$15.840</td><td>R$14.058</td><td><b>R$29.898</b></td><td>R$17.000</td><td class="color-e">+R$12.898</td></tr>
+    <tr><td>11</td><td>666</td><td>74</td><td>$1.40M</td><td>R$18.480</td><td>R$16.015</td><td><b>R$34.495</b></td><td>R$17.000</td><td class="color-e">+R$17.495</td></tr>
+    <tr style="background: rgba(139,92,246,0.06);"><td><b>12</b></td><td><b>738</b></td><td><b>82</b></td><td><b>$1.55M</b></td><td><b>R$21.450</b></td><td><b>R$18.020</b></td><td><b>R$39.470</b></td><td>R$17.000</td><td class="color-e"><b>+R$22.470</b></td></tr>
+  </table>
+  <p class="text-xs mt-1 op-60">Mês 5 destacado: primeiro mês positivo. CPI R$8, turnover 5x (manual) / 100x (API).</p>
+</div>
+
+<!-- ============ SLIDE 11: §7 KEY NUMBERS ============ -->
+<div class="slide">
+  <span class="label">§7 — Números-Chave</span>
+  <h2>Ano 1 em destaque</h2>
+  <div class="card-grid card-grid-4 mt-3">
+    <div class="card stat">
+      <div class="stat-value color-e">+R$50.6K</div>
+      <div class="stat-label">Resultado Ano 1</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-value color-v">R$39.5K</div>
+      <div class="stat-label">Revenue M12</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-value color-b">$7.2M</div>
+      <div class="stat-label">Volume Ano 1</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-value color-g">Mês 5</div>
+      <div class="stat-label">Breakeven Mensal</div>
+    </div>
+  </div>
+  <div class="divider"><div class="diamond"></div></div>
+  <h3>Evolução do modelo financeiro</h3>
+  <table class="mt-1">
+    <tr><th>Métrica</th><th>v1: Sub only</th><th>v2: 3 streams</th><th style="color: var(--accent1);">v3: + API (atual)</th></tr>
+    <tr><td>Revenue M12</td><td>R$18.5K</td><td>R$30.9K</td><td><b class="color-v">R$39.5K</b></td></tr>
+    <tr><td>Breakeven</td><td>Mês 12</td><td>Mês 8</td><td><b class="color-e">Mês 5</b></td></tr>
+    <tr><td>Resultado Ano 1</td><td class="color-r">-R$35K</td><td>+R$10.5K</td><td><b class="color-e">+R$50.6K</b></td></tr>
+    <tr><td>Volume M12</td><td>—</td><td>$480K</td><td><b class="color-b">$1.55M</b></td></tr>
+  </table>
+</div>
+
+<!-- ============ SLIDE 12: §7 VIBE CODERS ============ -->
+<div class="slide">
+  <span class="label">§7 — API / Vibe Coders</span>
+  <h2>1% dos usuários.<br><span class="gradient-text">69% do volume.</span></h2>
+
+  <div class="card-grid card-grid-2 mt-3">
+    <div>
+      <table>
+        <tr><th>Métrica</th><th>Manuais (99%)</th><th>API (1%)</th><th>% API</th></tr>
+        <tr><td>Usuários M12</td><td>738</td><td>82</td><td>1%</td></tr>
+        <tr><td>Volume M12</td><td>$480K</td><td>$1.07M</td><td><b class="color-v">69%</b></td></tr>
+        <tr><td>Rev Txn M12</td><td>R$9.4K</td><td>R$8.6K</td><td><b class="color-v">48%</b></td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="card" style="border-color: rgba(139,92,246,0.3);">
+        <h3>Implicações</h3>
+        <ul class="clean text-sm">
+          <li><strong>API = feature core</strong>, não nice-to-have</li>
+          <li>Developer experience é growth lever</li>
+          <li>82 vibe coders = stickier que traders manuais</li>
+          <li>$7.2M/ano justifica negociar rebate melhor</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="highlight mt-2">
+    <p style="color: var(--text); font-size: 0.9rem;">
+      Padrão da indústria: em crypto exchanges, bots representam 60-80% do volume. <strong>Augur deve ser bot-friendly desde o dia 1.</strong>
+    </p>
+  </div>
+</div>
+
+<!-- ============ SLIDE 13: §8 ACQUISITION ============ -->
+<div class="slide">
+  <span class="label">§8 — Aquisição</span>
+  <h2>Educação primeiro. <span class="gradient-text">Escala depois.</span></h2>
+  <div class="two-col mt-3">
+    <div>
+      <h3 class="color-v">M1-3: Validação (R$5K UA/mês)</h3>
+      <ul class="clean text-sm">
+        <li>625 paid installs/mês (CPI R$8) + orgânico</li>
+        <li>1.125 signups/mês — volume para testes</li>
+        <li>Twitter/X: 2-3 threads/dia</li>
+        <li>YouTube: 2 longos + 5 shorts/semana</li>
+        <li>Newsletter "Augur Weekly"</li>
+        <li>SEO: #1 para "mercados de previsão"</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="color-b">M4+: Escala com métricas</h3>
+      <ul class="clean text-sm">
+        <li>UA pago escala de R$3K→R$15K/mês</li>
+        <li>Google Search (intent alto)</li>
+        <li>Twitter/X Ads (público-alvo presente)</li>
+        <li>Meta Ads (lookalike de engaged users)</li>
+        <li>Micro-influencers crypto/finance</li>
+        <li>Orgânico >40% dos signups</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight mt-2">
+    <p style="color: var(--text); font-size: 0.85rem;">
+      <strong>Pilar de conteúdo #1:</strong> "Pesquisa diz X. Analista diz Y. O mercado — onde as pessoas PAGAM para provar — diz Z."
+    </p>
+  </div>
+</div>
+
+<!-- ============ SLIDE 14: §12 KPIs ============ -->
+<div class="slide">
+  <span class="label">§12 — KPIs por Fase</span>
+  <h2>Métricas que importam</h2>
+  <div class="card-grid card-grid-3 mt-3">
+    <div class="card">
+      <h3 class="color-v">M1-3: Validação</h3>
+      <div class="text-sm" style="color: var(--text2);">North Star: <strong class="color-v">Signups orgânicos</strong></div>
+      <ul class="clean text-sm mt-1">
+        <li>D1 retention > 30%</li>
+        <li>D7 retention > 15%</li>
+        <li>Academy M1 completion > 50%</li>
+        <li>25+ pagantes no M3</li>
+        <li>Twitter: 3.000 followers</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 class="color-b">M4-6: Aceleração</h3>
+      <div class="text-sm" style="color: var(--text2);">North Star: <strong class="color-b">Free-to-paid CVR</strong></div>
+      <ul class="clean text-sm mt-1">
+        <li>CPI blended < R$9</li>
+        <li>Free-to-paid > 4-5%</li>
+        <li>D30 retention > 8%</li>
+        <li>NPS > 45</li>
+        <li>K-factor > 0.15</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 class="color-g">M7-12: Escala</h3>
+      <div class="text-sm" style="color: var(--text2);">North Star: <strong class="color-g">MRR</strong></div>
+      <ul class="clean text-sm mt-1">
+        <li>MRR R$10K→R$39K</li>
+        <li>Premium 220→650</li>
+        <li>DAU 1.140→2.460</li>
+        <li>Organic > 42% signups</li>
+        <li>Churn < 8%</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 15: §15 RISKS ============ -->
+<div class="slide">
+  <span class="label">§15 — Riscos e Mitigações</span>
+  <h2>3 riscos críticos</h2>
+  <div class="card-grid card-grid-3 mt-3">
+    <div class="card" style="border-top: 3px solid var(--red);">
+      <span class="badge badge-red mb-2">CRÍTICO</span>
+      <h3>Nome "Augur"</h3>
+      <p class="text-sm">Augur Protocol sendo rebootado (Lituus Foundation). Marca encumbered. Risco de trademark.</p>
+      <div class="highlight-red mt-2" style="padding: 0.7rem;">
+        <p class="text-xs" style="color: var(--text);"><strong>Ação:</strong> Pesquisa INPI + advogado PI ANTES do lançamento. Provável rebrand necessário.</p>
+      </div>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--accent3);">
+      <span class="badge badge-gold mb-2">ALTO</span>
+      <h3>Regulatório (Custódia)</h3>
+      <p class="text-sm">Criação de carteira Polygon = possível VASP (Lei 14.478/2022). PIX→USDC = intermediação.</p>
+      <div class="highlight-gold mt-2" style="padding: 0.7rem;">
+        <p class="text-xs" style="color: var(--text);"><strong>Ação:</strong> Wallet-as-a-service de provedor regulado. Exchange parceira para câmbio.</p>
+      </div>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--accent2);">
+      <span class="badge badge-blue mb-2">ALTO</span>
+      <h3>Dependência Polymarket</h3>
+      <p class="text-sm">Se Polymarket mudar API ou bloquear acesso, core product quebra.</p>
+      <div class="highlight mt-2" style="padding: 0.7rem;">
+        <p class="text-xs" style="color: var(--text);"><strong>Ação:</strong> Multi-broker (Fase 2). Cache agressivo. Pipeline de dados independente.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 16: DECISIONS ============ -->
+<div class="slide" style="justify-content: center; align-items: center; text-align: center;">
+  <span class="label">Decisões Urgentes</span>
+  <h2 style="margin-bottom: 2rem;">3 decisões <span class="gradient-text">antes de lançar</span></h2>
+  <div class="card-grid card-grid-3" style="max-width: 900px;">
+    <div class="card text-center">
+      <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚖️</div>
+      <h3>Trademark</h3>
+      <p class="text-sm">Pesquisa PI sobre "Augur". Provavelmente rebrand necessário.</p>
+    </div>
+    <div class="card text-center">
+      <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏛️</div>
+      <h3>Parecer Jurídico</h3>
+      <p class="text-sm">Custódia de wallet + intermediação PIX→USDC (Lei 14.478/2022).</p>
+    </div>
+    <div class="card text-center">
+      <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤝</div>
+      <h3>Parceiro Exchange</h3>
+      <p class="text-sm">Qual exchange BR para conversão PIX→USDC (MB, Foxbit, Bitso).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SLIDE 17: CLOSE ============ -->
+<div class="slide" style="justify-content: center; align-items: center; text-align: center;">
+  <div style="margin-bottom: 2rem;">
+    <span class="gradient-text" style="font-size: 4rem; line-height: 1;">◈</span>
+  </div>
+  <h1 style="margin-bottom: 1rem;">
+    <span class="gradient-text">O Futuro,</span><br>Revelado.
+  </h1>
+  <div class="divider" style="max-width: 300px; margin: 1.5rem auto;"><div class="diamond"></div></div>
+  <p style="font-size: 1.1rem; color: var(--text2); max-width: 500px;">
+    $44B de mercado. Zero players em LATAM.<br>
+    A janela está aberta.
+  </p>
+  <div class="flex gap-2 mt-3" style="justify-content: center;">
+    <span class="badge badge-green">Breakeven Mês 5</span>
+    <span class="badge badge-violet">$7.2M Volume Ano 1</span>
+    <span class="badge badge-gold">R$39.5K Revenue M12</span>
+  </div>
+  <p class="mono text-xs op-60 mt-3">Augur — Marketing Strategy v1.0 — Abril 2026</p>
+</div>
+
+</div><!-- end .deck -->
+
+<!-- Navigation bar -->
+<div class="nav-bar">
+  <div class="logo">
+    <span>◈</span>
+    <span>AUGUR</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+  <span class="slide-counter" id="counter">1 / 17</span>
+  <div class="nav-arrows">
+    <button onclick="prev()" aria-label="Previous">←</button>
+    <button onclick="next()" aria-label="Next">→</button>
+  </div>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+const total = slides.length;
+
+function go(n) {
+  if (n < 0 || n >= total || n === current) return;
+  const oldSlide = slides[current];
+  const newSlide = slides[n];
+  const direction = n > current ? 1 : -1;
+
+  oldSlide.classList.remove('active');
+  oldSlide.style.opacity = '0';
+  oldSlide.style.transform = 'translateX(' + (-direction * 60) + 'px)';
+
+  current = n;
+
+  newSlide.style.transform = 'translateX(' + (direction * 60) + 'px)';
+  newSlide.style.opacity = '0';
+  // Force reflow
+  void newSlide.offsetWidth;
+  newSlide.classList.add('active');
+  newSlide.style.opacity = '';
+  newSlide.style.transform = '';
+
+  document.getElementById('progress').style.width = ((current / (total - 1)) * 100) + '%';
+  document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+}
+
+function next() { go(current + 1); }
+function prev() { go(current - 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+  if (e.key === 'Home') { e.preventDefault(); go(0); }
+  if (e.key === 'End') { e.preventDefault(); go(total - 1); }
+});
+
+// Touch support
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+});
+
+// Init — first slide already has .active in HTML, just set counter
+document.getElementById('progress').style.width = '0%';
+document.getElementById('counter').textContent = '1 / ' + total;
+
+// ============ Revenue Simulator ============
+function updateSim() {
+  const mau = parseInt(document.getElementById('sim-mau').value);
+  const apiPct = parseFloat(document.getElementById('sim-api').value) / 100;
+  const dep = parseInt(document.getElementById('sim-dep').value);
+  const subs = parseInt(document.getElementById('sim-subs').value);
+  const ticketSub = 80;
+  const brl2usd = 5.0;
+
+  // Derive from MAU (same logic as projection table)
+  const dau = Math.round(mau * 0.30);
+  const manualCount = Math.round(dau * 0.30);  // 30% do DAU opera
+  const apiCount = Math.round(mau * apiPct);    // % do MAU são vibe coders
+
+  const volManualBRL = manualCount * dep * 5;    // 5x turnover
+  const volApiBRL = apiCount * dep * 100;        // 100x turnover
+  const volTotalBRL = volManualBRL + volApiBRL;
+
+  const allTraders = manualCount + apiCount;
+  const rebateBRL = volTotalBRL * 0.0015;
+  const spreadBRL = allTraders * dep * 0.015;
+  const subRevBRL = subs * ticketSub;
+  const revenueBRL = rebateBRL + spreadBRL + subRevBRL;
+
+  // Format helpers
+  const fmtUSD = (v) => {
+    const usd = v / brl2usd;
+    if (usd >= 1000000) return '$' + (usd / 1000000).toFixed(1) + 'M';
+    if (usd >= 1000) return '$' + Math.round(usd / 1000) + 'K';
+    return '$' + Math.round(usd);
+  };
+  const fmtBRL = (v) => 'R$' + Math.round(v).toLocaleString('pt-BR');
+
+  document.getElementById('sim-mau-val').textContent = mau.toLocaleString('pt-BR');
+  document.getElementById('sim-api-val').textContent = (apiPct * 100).toFixed(apiPct * 100 % 1 === 0 ? 0 : 1) + '%';
+  document.getElementById('sim-dep-val').textContent = 'R$' + dep.toLocaleString('pt-BR');
+  document.getElementById('sim-subs-val').textContent = subs.toLocaleString('pt-BR');
+
+  document.getElementById('sim-dau').textContent = dau.toLocaleString('pt-BR');
+  document.getElementById('sim-manual-count').textContent = manualCount.toLocaleString('pt-BR');
+  document.getElementById('sim-api-count').textContent = apiCount.toLocaleString('pt-BR');
+  document.getElementById('sim-vol-manual').textContent = fmtUSD(volManualBRL);
+  document.getElementById('sim-vol-api').textContent = fmtUSD(volApiBRL);
+  document.getElementById('sim-vol-total').textContent = fmtUSD(volTotalBRL);
+
+  document.getElementById('sim-rebate').textContent = fmtBRL(rebateBRL);
+  document.getElementById('sim-spread').textContent = fmtBRL(spreadBRL);
+  document.getElementById('sim-sub-rev').textContent = fmtBRL(subRevBRL);
+  document.getElementById('sim-revenue').textContent = fmtBRL(revenueBRL);
+}
+
+document.getElementById('sim-mau').addEventListener('input', updateSim);
+document.getElementById('sim-api').addEventListener('input', updateSim);
+document.getElementById('sim-dep').addEventListener('input', updateSim);
+document.getElementById('sim-subs').addEventListener('input', updateSim);
+updateSim();
+
+</script>
+</body>
+</html>
